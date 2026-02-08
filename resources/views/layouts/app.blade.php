@@ -59,7 +59,7 @@
     </main>
 
     <!-- Подвал -->
-    <footer class="mt-5 pt-4 border-top text-center text-muted small">
+    <footer class="mt-5 pt-4 border-top text-center text-muted small fixed-bottom bg-white">
         <p>Тестовый проект на Laravel от Виктора Ли.</p>
     </footer>
     </div>
