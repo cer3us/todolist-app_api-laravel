@@ -16,9 +16,9 @@
 
 ## Установка / Installation
 
-1. Клонировать репозиторий / Cloned the repository
+1. Клонировать репозиторий / Clone the repository
 2. Установить зависимости / Install dependencies
 3. Настроить базу данных в `.env` / Update `.env`
 4. Запустить миграции / Complete the migration
-5. Запустить сервер для Приложения или работать с API через `curl` / Run the server and check the web app or test the API with `curl`
+5. Запустить сервер для Приложения или работать с API через `curl` / Run the server and check the WebAPP or test the API with `curl`
 
