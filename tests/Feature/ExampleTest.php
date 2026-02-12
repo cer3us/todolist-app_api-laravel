@@ -14,6 +14,8 @@ class ExampleTest extends TestCase
     {
         $response = $this->get('/');
 
-        $response->assertStatus(200);
+        // $response->assertStatus(200);
+        // Переадресация домашней страницы на '/tasks', поэтому верный код - 302 
+        $response->assertStatus(302);
     }
 }

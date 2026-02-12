@@ -10,7 +10,7 @@
                 </h4>
             </div>
             <div class="card-body">
-                <form action="{{ route('tasks.update', $task->id) }}" method="POST">
+                <form action="{{ route('tasks.update', $task->id) }}" method="POST" novalidate>
                     @csrf
                     @method('PUT')
 

@@ -5,6 +5,10 @@ namespace App\Http\Controllers;
 use App\Models\Task;
 use Illuminate\Http\Request;
 use Illuminate\View\View;
+use App\Http\Requests\StoreTaskRequest;
+use App\Http\Requests\UpdateTaskRequest;
+use App\Http\Resources\TaskResource;
+
 
 class TaskWebController extends Controller
 {
@@ -19,15 +23,10 @@ class TaskWebController extends Controller
         return view('tasks.create');
     }
 
-    public function store(Request $request)
+    public function store(StoreTaskRequest $request)
     {
-        $request->validate([
-            'title' => 'required|string|max:255',
-            'description' => 'nullable|string',
-            'status' => 'nullable|in:pending,in_progress,completed'
-        ]);
 
-        Task::create($request->all());
+        Task::create($request->validated());
 
         return redirect()->route('tasks.index')
             ->with('success', 'Task created successfully!');
@@ -43,15 +42,10 @@ class TaskWebController extends Controller
         return view('tasks.edit', compact('task'));
     }
 
-    public function update(Request $request, Task $task)
+    public function update(UpdateTaskRequest $request, Task $task)
     {
-        $request->validate([
-            'title' => 'sometimes|required|string|max:255',
-            'description' => 'nullable|string',
-            'status' => 'sometimes|in:pending,in_progress,completed'
-        ]);
 
-        $task->update($request->all());
+        $task->update($request->validated());
 
         return redirect()->route('tasks.show', $task->id)
             ->with('success', 'Task updated successfully!');

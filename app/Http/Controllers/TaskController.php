@@ -3,96 +3,70 @@
 namespace App\Http\Controllers;
 
 use App\Models\Task;
-use Illuminate\Http\Request;
 use Illuminate\Http\Response;
+use App\Http\Requests\StoreTaskRequest;
+use App\Http\Requests\UpdateTaskRequest;
+use App\Http\Resources\TaskResource;
+
 
 class TaskController extends Controller
 {
-
-    // GET /tasks - Просмотр списка задач
-
     public function index()
     {
-        $tasks = Task::all();
         return response()->json([
-            'status' => 'success',
-            'data' => $tasks
+            'processing_status' => 'success',
+            'message' => 'All tasks retrieved successfully',
+            'data' => TaskResource::collection(Task::all())
         ], Response::HTTP_OK);
     }
 
-
-    // POST /tasks - Создание задачи
-
-    public function store(Request $request)
+    public function store(StoreTaskRequest $request)
     {
-        // Валидация
-        $validated = $request->validate([
-            'title' => 'required|string|min:3|max:255',
-            'description' => 'nullable|string|min:3|max:1000',
-            'status' => 'nullable|in:pending,in_progress,completed'
-        ]);
+        $task = Task::create($request->validated());
 
-        // Создание задачи
-        $task = Task::create($validated);
-
-        return response()->json([
-            'status' => 'success',
-            'message' => 'Task created successfully',
-            'data' => $task
-        ], Response::HTTP_CREATED);
+        return (new TaskResource($task))->additional([
+            'processing_status' => 'success',
+            'message' => 'Task created successfully'
+        ])->response()->setStatusCode(201);
     }
 
-    // GET /tasks/{id} - Просмотр одной задачи
 
     public function show($id)
     {
-        // Поиска задачи по `id`
         $task = Task::find($id);
 
         if (!$task) {
             return response()->json([
-                'status' => 'error',
+                'processing_status' => 'error',
                 'message' => 'Task not found'
             ], Response::HTTP_NOT_FOUND);
         }
 
-        return response()->json([
-            'status' => 'success',
-            'data' => $task
-        ], Response::HTTP_OK);
+        return (new TaskResource($task))->additional([
+            'processing_status' => 'success',
+            'message' => "Task retrieved successfully"
+        ])->response()->setStatusCode(Response::HTTP_OK);
     }
 
-    // PUT /tasks/{id} - Обновление задачи
-
-    public function update(Request $request, $id)
+    public function update(UpdateTaskRequest $request, $id)
     {
         $task = Task::find($id);
 
         if (!$task) {
             return response()->json([
-                'status' => 'error',
+                'processing_status' => 'error',
                 'message' => 'Task not found'
             ], Response::HTTP_NOT_FOUND);
         }
 
-        // Валидация
-        $validated = $request->validate([
-            'title' => 'required|string|min:3|max:255',
-            'description' => 'nullable|string|min:3|max:1000',
-            'status' => 'nullable|in:pending,in_progress,completed'
-        ]);
+        $task->update($request->validated());
 
-        // Обновление задачи
-        $task->update($validated);
-
-        return response()->json([
-            'status' => 'success',
-            'message' => 'Task updated successfully',
-            'data' => $task
-        ], Response::HTTP_OK);
+        return (new TaskResource($task))->additional([
+            'processing_status' => 'success',
+            'message' => 'Task updated successfully'
+        ])->response()->setStatusCode(Response::HTTP_OK);
     }
 
-    // DELETE /tasks/{id} - Удаление задачи
 
     public function destroy($id)
     {
@@ -100,17 +74,16 @@ class TaskController extends Controller
 
         if (!$task) {
             return response()->json([
-                'status' => 'error',
+                'processing_status' => 'error',
                 'message' => 'Task not found'
             ], Response::HTTP_NOT_FOUND);
         }
 
-        // Удаление задачи
         $task->delete();
 
-        return response()->json([
-            'status' => 'success',
+        return (new TaskResource($task))->additional([
+            'processing_status' => 'success',
             'message' => 'Task deleted successfully'
-        ], Response::HTTP_OK);
+        ])->response()->setStatusCode(Response::HTTP_OK);
     }
 }
