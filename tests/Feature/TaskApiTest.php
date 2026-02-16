@@ -51,7 +51,7 @@ class TaskApiTest extends TestCase
         $task = Task::factory()->create();
         $updateData = ['title' => 'Updated Title'];
 
-        $response = $this->putJson("/api/tasks/{$task->id}", $updateData);
+        $response = $this->patchJson("/api/tasks/{$task->id}", $updateData);
 
         $response->assertStatus(200)
             ->assertJsonPath('data.title', 'Updated Title');
@@ -78,6 +78,6 @@ class TaskApiTest extends TestCase
     {
         $response = $this->postJson('/api/tasks', []);
         $response->assertStatus(422)
-            ->assertJsonValidationErrors(['title']);
+            ->assertJson(['title' => []]);
     }
 }

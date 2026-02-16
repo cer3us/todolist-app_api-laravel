@@ -74,7 +74,7 @@ http://localhost:8000/api/tasks - API base URL / маршрут для API
 
 ---
 
-🔹 Endpoints
+🔹 Endpoints / Маршруты
 | Method/Метод | Endpoint/URL | Description/Описание | HTTP Status Codes / Коды состояния HTTP |
 | --- | --- | --- | --- |
 | GET |	/api/tasks | Get all tasks/Получить все задачи | 200 OK |

@@ -1,16 +1,16 @@
 <?php
 
-namespace App\Http\Requests;
+namespace App\Http\Requests\Api;
 
-use Illuminate\Foundation\Http\FormRequest;
+use App\Http\Requests\ApiRequest;
 
-class StoreTaskRequest extends FormRequest
+class UpdateTaskRequest extends ApiRequest
 {
 
     public function rules(): array
     {
         return [
-            'title' => 'required|string|min:3|max:255',
+            'title' => 'string|min:3|max:255',
             'description' => 'nullable|string|min:3|max:1000',
             'status' => 'nullable|in:pending,in_progress,completed'
         ];

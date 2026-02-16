@@ -60,7 +60,9 @@
 
     <!-- Подвал -->
     <footer class="mt-5 pt-4 border-top text-center text-muted small fixed-bottom bg-white">
-        <p>Тестовый проект на Laravel от Виктора Ли.</p>
+        <p>
+            &copy; <span id="current-year"></span> Все права защищены.
+        </p>
     </footer>
     </div>
 
@@ -76,6 +78,8 @@
                 document.getElementById('delete-form-' + taskId).submit();
             }
         }
+        // Автоматическое обновление года в футере
+        document.getElementById('current-year').textContent = new Date().getFullYear();
     </script>
 </body>
 

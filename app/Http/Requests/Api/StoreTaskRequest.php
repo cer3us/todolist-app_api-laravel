@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Http\Requests;
+namespace App\Http\Requests\Api;
 
-use Illuminate\Foundation\Http\FormRequest;
+use App\Http\Requests\ApiRequest;
 
-class StoreTaskRequest extends FormRequest
+class StoreTaskRequest extends ApiRequest
 {
 
     public function rules(): array
