@@ -80,5 +80,5 @@ http://localhost:8000/api/tasks - API base URL / маршрут для API
 | GET |	/api/tasks | Get all tasks/Получить все задачи | 200 OK |
 | POST | /api/tasks | Create a new task/Создать задачу | 201 Created |
 | GET |	/api/tasks/{id} | Get a single task/Получить одну задачу | 200 OK, 404 Not Found |
-| PUT | /api/tasks/{id} | Update a task/Обновить задачу | 200 OK, 404 Not Found |
+| PATCH | /api/tasks/{id} | Update a task/Обновить задачу | 200 OK, 404 Not Found |
 | DELETE | /api/tasks/{id} | Delete a task/Удалить задачу |	200 OK, 404 Not Found |
