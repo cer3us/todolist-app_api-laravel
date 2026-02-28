@@ -46,9 +46,26 @@
                 <a class="navbar-brand text-primary fw-bold" href="/">
                     <i class="fas fa-tasks me-2"></i>To Do List (app+api)
                 </a>
-                <a href="{{ route('tasks.create') }}" class="btn btn-primary btn-sm">
-                    <i class="fas fa-plus me-1"></i>Добавить задачу
-                </a>
+
+                <div class="d-flex">
+                    <a href="{{ route('tasks.create') }}" class="btn btn-primary btn-md me-1 ">
+                        <i class="fas fa-plus me-1"></i>{{ __('tasks.addTask') }}
+                    </a>
+
+                    @php
+                    $currentLocale = app()->getLocale();
+                    @endphp
+                    <div class="nav-item dropdown mx-3">
+                        <a class="nav-link dropdown-toggle pt-1" href="#" id="langDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            {{ strtoupper($currentLocale) }}
+                        </a>
+                        <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="langDropdown">
+                            <li><a class="dropdown-item {{ $currentLocale == 'en' ? 'active' : '' }}" href="{{ route('locale.switch', 'en') }}">English</a></li>
+                            <li><a class="dropdown-item {{ $currentLocale == 'ru' ? 'active' : '' }}" href="{{ route('locale.switch', 'ru') }}">Русский</a></li>
+                        </ul>
+                    </div>
+                </div>
+
             </div>
         </nav>
     </div>
@@ -61,7 +78,7 @@
     <!-- Подвал -->
     <footer class="mt-5 pt-4 border-top text-center text-muted small fixed-bottom bg-white">
         <p>
-            &copy; <span id="current-year"></span> Все права защищены.
+            &copy; <span id="current-year"></span> {{ __('tasks.rightsReserved') }}.
         </p>
     </footer>
     </div>
@@ -73,7 +90,7 @@
     <script>
         // Подтверждение перед удалением
         function confirmDelete(taskId, taskTitle) {
-            if (confirm('Удалить задачу: "' + taskTitle + '"?')) {
+            if (confirm('{{ __("tasks.deleteTask") }}: "' + taskTitle + '"?')) {
                 // Отправляем форму с соответствующим ID
                 document.getElementById('delete-form-' + taskId).submit();
             }

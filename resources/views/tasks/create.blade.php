@@ -7,7 +7,7 @@
             <div class="card">
                 <div class="card-header bg-primary text-white">
                     <h4 class="mb-0">
-                        <i class="fas fa-plus-circle me-2"></i>Добавить задачу
+                        <i class="fas fa-plus-circle me-2"></i>{{ __('tasks.addTask') }}
                     </h4>
                 </div>
                 <div class="card-body">
@@ -16,7 +16,7 @@
 
                         <div class="mb-3">
                             <label for="title" class="form-label">
-                                <i class="fas fa-heading me-1"></i>Название *
+                                <i class="fas fa-heading me-1"></i>{{ __('tasks.title') }}
                             </label>
                             <input type="text"
                                 class="form-control @error('title') is-invalid @enderror"
@@ -24,7 +24,7 @@
                                 name="title"
                                 value="{{ old('title') }}"
                                 required
-                                placeholder="Введите название задачи">
+                                placeholder="{{ __('tasks.fillTitle') }}">
                             @error('title')
                             <div class="invalid-feedback">{{ $message }}</div>
                             @enderror
@@ -32,13 +32,13 @@
 
                         <div class="mb-3">
                             <label for="description" class="form-label">
-                                <i class="fas fa-align-left me-1"></i>Описание
+                                <i class="fas fa-align-left me-1"></i>{{ __('tasks.description') }}
                             </label>
                             <textarea class="form-control @error('description') is-invalid @enderror"
                                 id="description"
                                 name="description"
                                 rows="4"
-                                placeholder="Опишите задачу...">{{ old('description') }}</textarea>
+                                placeholder="{{ __('tasks.fillDescription') }}">{{ old('description') }}</textarea>
                             @error('description')
                             <div class="invalid-feedback">{{ $message }}</div>
                             @enderror
@@ -46,19 +46,19 @@
 
                         <div class="mb-4">
                             <label for="status" class="form-label">
-                                <i class="fas fa-tasks me-1"></i>Статус
+                                <i class="fas fa-tasks me-1"></i>{{ __('tasks.status') }}
                             </label>
                             <select class="form-select @error('status') is-invalid @enderror"
                                 id="status"
                                 name="status">
                                 <option value="pending" {{ old('status', 'pending') == 'pending' ? 'selected' : '' }}>
-                                    ⏳ Ожидает
+                                    ⏳ {{ __('tasks.statusPending') }}
                                 </option>
                                 <option value="in_progress" {{ old('status') == 'in_progress' ? 'selected' : '' }}>
-                                    🔄 В процессе
+                                    🔄 {{ __('tasks.statusInProgress') }}
                                 </option>
                                 <option value="completed" {{ old('status') == 'completed' ? 'selected' : '' }}>
-                                    ✅ Завершена
+                                    ✅ {{ __('tasks.statusCompleted') }}
                                 </option>
                             </select>
                             @error('status')
@@ -68,10 +68,10 @@
 
                         <div class="d-flex justify-content-between">
                             <a href="{{ route('tasks.index') }}" class="btn btn-secondary">
-                                <i class="fas fa-arrow-left me-1"></i>Назад к списку
+                                <i class="fas fa-arrow-left me-1"></i>{{ __('tasks.backToList') }}
                             </a>
                             <button type="submit" class="btn btn-primary">
-                                <i class="fas fa-save me-1"></i>Сохранить задачу
+                                <i class="fas fa-save me-1"></i>{{ __('tasks.saveTask') }}
                             </button>
                         </div>
                     </form>

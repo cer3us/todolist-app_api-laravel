@@ -7,13 +7,13 @@
 ![GitHub](https://img.shields.io/badge/GitHub-100000?style=for-the-badge&logo=github&logoColor=white)
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
-[![Laravel Version](https://img.shields.io/badge/Laravel-11.x-FF2D20.svg)](https://laravel.com)
+[![Laravel Version](https://img.shields.io/badge/Laravel-12.x-FF2D20.svg)](https://laravel.com)
 
 > A complete REST API for task management (To‑Do List) built with Laravel 12.  
-> Includes a Bootstrap 5 frontend, Docker support, Form Requests, API Resources, Feature Tests, Factories & Seeders.
+> Includes a Bootstrap 5 frontend, Docker support, Form Requests, API Resources, Feature Tests, Factories, Seeders and En/Ru localization.
 
 > Полноценный REST API для управления задачами (To‑Do список), разработанный на Laravel 12.  
-> Включает Bootstrap 5 интерфейс, поддержку Docker, Form Request, API Resource, Feature Tests, фабрики и сидеры.
+> Включает Bootstrap 5 интерфейс, поддержку Docker, реквесты, API ресурсы, интеграционные тесты, фабрики, сидеры и поддержки Английского и Русского языков. 
 
 ---
 ## ✨ Возможности
@@ -25,6 +25,7 @@
 - ✅ **База данных MySQL** – миграции, фабрики и сидеры (20 тестовых задач)
 - ✅ **Поддержка Docker**
 - ✅ **7 Feature‑тестов** для проверки API
+- ✅ **En/Ru локализация** для вэб-интерфейса и API (необходим `Accept-Language` заголовок со значением `ru`/`en`)
 
 ## ✨ Features
 
@@ -35,6 +36,8 @@
 - ✅ **MySQL database** with migrations, factories, and seeders (20 dummy tasks)
 - ✅ **Docker support**
 - ✅ **Comprehensive feature tests** – 7 passing tests for the API
+- ✅ **En/Ru localization** for WebApp and API (expects `Accept-Language` header as `ru`/`en`)
+
 
 ## 📋 Requirements / Требования
 - PHP 8.1+

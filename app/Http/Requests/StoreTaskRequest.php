@@ -19,12 +19,12 @@ class StoreTaskRequest extends FormRequest
     public function messages(): array
     {
         return [
-            'title.required' => 'Поле "Название" обязательно для заполнения.',
-            'title.min' => 'Название должно содержать не менее :min символов.',
-            'title.max' => 'Название должно содержать не более :max символов.',
-            'description.min' => 'Описание должно содержать не менее :min символов.',
-            'description.max' => 'Описание должно содержать не более :max символов.',
-            'status.in' => 'Выбран недопустимый статус.',
+            'title.required' =>  __('tasks.title.required'),
+            'title.min' => __('tasks.title.min', ['min' => 3]),
+            'title.max' => __('tasks.title.max', ['max' => 255]),
+            'description.min' => __('tasks.description.min', ['min' => 3]),
+            'description.max' => __('tasks.description.max', ['max' => 1000]),
+            'status.in' => __('tasks.status.in'),
         ];
     }
 }

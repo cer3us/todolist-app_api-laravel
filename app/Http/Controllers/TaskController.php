@@ -14,8 +14,8 @@ class TaskController extends Controller
     public function index()
     {
         return response()->json([
-            'processing_status' => 'success',
-            'message' => 'All tasks retrieved successfully',
+            'processing_status' => __('tasks.success'),
+            'message' => __('tasks.successIndex'),
             'data' => TaskResource::collection(Task::all())
         ], Response::HTTP_OK);
     }
@@ -26,8 +26,8 @@ class TaskController extends Controller
 
 
         return (new TaskResource($task))->additional([
-            'processing_status' => 'success',
-            'message' => 'Task created successfully'
+            'processing_status' => __('tasks.success'),
+            'message' => __('tasks.successStore')
         ])->response()->setStatusCode(201);
     }
 
@@ -38,14 +38,14 @@ class TaskController extends Controller
 
         if (!$task) {
             return response()->json([
-                'processing_status' => 'error',
-                'message' => 'Task not found'
+                'processing_status' => __('tasks.error'),
+                'message' => __('tasks.taskNotFound')
             ], Response::HTTP_NOT_FOUND);
         }
 
         return (new TaskResource($task))->additional([
-            'processing_status' => 'success',
-            'message' => "Task retrieved successfully"
+            'processing_status' => __('tasks.success'),
+            'message' => __('tasks.successShow')
         ])->response()->setStatusCode(Response::HTTP_OK);
     }
 
@@ -55,8 +55,8 @@ class TaskController extends Controller
 
         if (!$task) {
             return response()->json([
-                'processing_status' => 'error',
-                'message' => 'Task not found'
+                'processing_status' => __('tasks.error'),
+                'message' => __('tasks.taskNotFound')
             ], Response::HTTP_NOT_FOUND);
         }
 
@@ -64,8 +64,8 @@ class TaskController extends Controller
         $task->update($request->validated());
 
         return (new TaskResource($task))->additional([
-            'processing_status' => 'success',
-            'message' => 'Task updated successfully'
+            'processing_status' => __('tasks.success'),
+            'message' => __('tasks.successUpdate')
         ])->response()->setStatusCode(Response::HTTP_OK);
     }
 
@@ -76,16 +76,16 @@ class TaskController extends Controller
 
         if (!$task) {
             return response()->json([
-                'processing_status' => 'error',
-                'message' => 'Task not found'
+                'processing_status' => __('tasks.error'),
+                'message' => __('tasks.taskNotFound')
             ], Response::HTTP_NOT_FOUND);
         }
 
         $task->delete();
 
         return (new TaskResource($task))->additional([
-            'processing_status' => 'success',
-            'message' => 'Task deleted successfully'
+            'processing_status' => __('tasks.success'),
+            'message' => __('tasks.successDelete')
         ])->response()->setStatusCode(Response::HTTP_OK);
     }
 }

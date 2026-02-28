@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\LocaleController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\TaskWebController;
 
@@ -10,3 +11,5 @@ Route::resource('tasks', TaskWebController::class);
 Route::get('/', function () {
     return redirect()->route('tasks.index');
 })->name('home');
+
+Route::get('locale/{locale}', [LocaleController::class, 'switch'])->name('locale.switch');

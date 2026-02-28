@@ -6,7 +6,7 @@
         <div class="card">
             <div class="card-header bg-warning">
                 <h4 class="mb-0">
-                    <i class="fas fa-edit me-2"></i>Изменить задачу
+                    <i class="fas fa-edit me-2"></i>{{ __('tasks.editTask') }}
                 </h4>
             </div>
             <div class="card-body">
@@ -15,7 +15,7 @@
                     @method('PUT')
 
                     <div class="mb-3">
-                        <label for="title" class="form-label">Название *</label>
+                        <label for="title" class="form-label">{{ __('tasks.title') }}</label>
                         <input type="text"
                             class="form-control @error('title') is-invalid @enderror"
                             id="title"
@@ -28,7 +28,7 @@
                     </div>
 
                     <div class="mb-3">
-                        <label for="description" class="form-label">Описание</label>
+                        <label for="description" class="form-label">{{ __('tasks.description') }}</label>
                         <textarea class="form-control @error('description') is-invalid @enderror"
                             id="description"
                             name="description"
@@ -39,18 +39,18 @@
                     </div>
 
                     <div class="mb-4">
-                        <label for="status" class="form-label">Статус</label>
+                        <label for="status" class="form-label">{{ __('tasks.status') }}</label>
                         <select class="form-select @error('status') is-invalid @enderror"
                             id="status"
                             name="status">
                             <option value="pending" {{ old('status', 'pending') == 'pending' ? 'selected' : '' }}>
-                                ⏳ Ожидает
+                                ⏳ {{ __('tasks.statusPending') }}
                             </option>
                             <option value="in_progress" {{ old('status') == 'in_progress' ? 'selected' : '' }}>
-                                🔄 В процессе
+                                🔄 {{ __('tasks.statusInProgress') }}
                             </option>
                             <option value="completed" {{ old('status') == 'completed' ? 'selected' : '' }}>
-                                ✅ Завершена
+                                ✅ {{ __('tasks.statusCompleted') }}
                             </option>
                         </select>
                         @error('status')
@@ -60,11 +60,11 @@
 
                     <div class="d-flex justify-content-between">
                         <a href="{{ route('tasks.show', $task->id) }}" class="btn btn-secondary">
-                            <i class="fas fa-times me-1"></i>Отмена
+                            <i class="fas fa-times me-1"></i>{{ __('tasks.cancel') }}
                         </a>
                         <div>
                             <button type="submit" class="btn btn-warning">
-                                <i class="fas fa-save me-1"></i>Сохранить
+                                <i class="fas fa-save me-1"></i>{{ __('tasks.save') }}
                             </button>
                         </div>
                     </div>
