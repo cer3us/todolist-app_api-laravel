@@ -29,7 +29,7 @@ class TaskWebController extends Controller
         Task::create($request->validated());
 
         return redirect()->route('tasks.index')
-            ->with('success', 'Task created successfully!');
+            ->with('success', __('tasks.successStore'));
     }
 
     public function show(Task $task): View
@@ -48,7 +48,7 @@ class TaskWebController extends Controller
         $task->update($request->validated());
 
         return redirect()->route('tasks.show', $task->id)
-            ->with('success', 'Task updated successfully!');
+            ->with('success', __('tasks.successUpdate'));
     }
 
     public function destroy(Task $task)
@@ -56,6 +56,6 @@ class TaskWebController extends Controller
         $task->delete();
 
         return redirect()->route('tasks.index')
-            ->with('success', 'Task deleted successfully!');
+            ->with('success', __('tasks.successDelete'));
     }
 }

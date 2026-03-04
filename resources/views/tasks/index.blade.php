@@ -26,7 +26,7 @@
     @foreach($tasks as $task)
     <div class="col">
         <div class="card task-item h-100 mx-3">
-            <div class="card-body">
+            <div class="card-body d-flex flex-column justify-content-between">
                 <div class="d-flex justify-content-between align-items-start m-2">
                     <h5 class="card-title">{{ $task->title }}</h5>
                     <span class="badge bg-{{ $task->status == 'completed' ? 'success' : ($task->status == 'in_progress' ? 'warning' : 'secondary') }}">
@@ -54,39 +54,41 @@
                 <p class="card-text text-muted"><em>{{ __('tasks.noDescription') }}</em></p>
                 @endif
 
-                <div class="text-muted small mb-3">
-                    <i class="far fa-clock me-1"></i>
-                    {{ __('tasks.createdAt') }}: {{ $task->created_at->format('d.m.Y H:i') }}
-                </div>
+                <div>
+                    <div class="text-muted small mb-3">
+                        <i class="far fa-clock me-1"></i>
+                        {{ __('tasks.createdAt') }}: {{ $task->created_at->format('d.m.Y H:i') }}
+                    </div>
 
-                <div class="row g-2">
-                    <div class="col-4 px-1">
-                        <a href="{{ route('tasks.show', $task->id) }}"
-                            class="btn btn-outline-primary btn-sm d-flex align-items-center justify-content-center w-100"
-                            style="height: 38px;">
-                            <i class="fas fa-eye me-1"></i> {{ __('tasks.view') }}
-                        </a>
-                    </div>
-                    <div class="col-4 px-1">
-                        <a href="{{ route('tasks.edit', $task->id) }}"
-                            class="btn btn-outline-warning btn-sm d-flex align-items-center justify-content-center w-100"
-                            style="height: 38px;">
-                            <i class="fas fa-edit me-1"></i> {{ __('tasks.edit') }}
-                        </a>
-                    </div>
-                    <div class="col-4 px-1">
-                        <form id="delete-form-{{ $task->id }}"
-                            action="{{ route('tasks.destroy', $task->id) }}"
-                            method="POST"
-                            style="height: 38px;">
-                            @csrf
-                            @method('DELETE')
-                            <button type="button"
-                                onclick="confirmDelete({{ $task->id }}, '{{ addslashes($task->title) }}')"
-                                class="btn btn-outline-danger btn-sm w-100 h-100 d-flex align-items-center justify-content-center">
-                                <i class="fas fa-trash me-1"></i> {{ __('tasks.delete') }}
-                            </button>
-                        </form>
+                    <div class="row g-2">
+                        <div class="col-4 px-1">
+                            <a href="{{ route('tasks.show', $task->id) }}"
+                                class="btn btn-outline-primary btn-sm d-flex align-items-center justify-content-center w-100"
+                                style="height: 38px;">
+                                <i class="fas fa-eye me-1"></i> {{ __('tasks.view') }}
+                            </a>
+                        </div>
+                        <div class="col-4 px-1">
+                            <a href="{{ route('tasks.edit', $task->id) }}"
+                                class="btn btn-outline-warning btn-sm d-flex align-items-center justify-content-center w-100"
+                                style="height: 38px;">
+                                <i class="fas fa-edit me-1"></i> {{ __('tasks.edit') }}
+                            </a>
+                        </div>
+                        <div class="col-4 px-1">
+                            <form id="delete-form-{{ $task->id }}"
+                                action="{{ route('tasks.destroy', $task->id) }}"
+                                method="POST"
+                                style="height: 38px;">
+                                @csrf
+                                @method('DELETE')
+                                <button type="button"
+                                    onclick="confirmDelete({{ $task->id }}, '{{ addslashes($task->title) }}')"
+                                    class="btn btn-outline-danger btn-sm w-100 h-100 d-flex align-items-center justify-content-center">
+                                    <i class="fas fa-trash me-1"></i> {{ __('tasks.delete') }}
+                                </button>
+                            </form>
+                        </div>
                     </div>
                 </div>
             </div>

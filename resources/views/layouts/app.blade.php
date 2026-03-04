@@ -72,16 +72,19 @@
 
     <!-- Основная часть -->
     <main>
-        @yield('content')
+        <div class="container">
+            @yield('content')
+        </div>
     </main>
 
     <!-- Подвал -->
     <footer class="mt-5 pt-4 border-top text-center text-muted small fixed-bottom bg-white">
-        <p>
-            &copy; <span id="current-year"></span> {{ __('tasks.rightsReserved') }}.
-        </p>
+        <div class="container">
+            <p class="mb-2 text-muted small">
+                &copy; <span id="current-year"></span> {{ __('tasks.rightsReserved') }}.
+            </p>
+        </div>
     </footer>
-    </div>
 
     <!-- Bootstrap JS -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>

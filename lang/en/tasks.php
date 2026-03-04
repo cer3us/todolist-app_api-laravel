@@ -50,5 +50,8 @@ return  [
     'successUpdate' => 'Task updated successfully',
     'successDelete' => 'Task deleted successfully',
     'error' => 'error',
-    'taskNotFound' => 'Task not found'
+    'taskNotFound' => 'Task not found',
+
+    //Task limit
+    'limitReached' => 'You have reached the maximum of 5 tasks per session.',
 ];

@@ -51,4 +51,7 @@ return  [
     'successDelete' => 'Задача удалена',
     'error' => 'Ошибка',
     'taskNotFound' => 'Задача не найдена',
+
+    //Task limit
+    'limitReached' => 'Достигнуто ограничение в 5 созданных задач за сессию.',
 ];
