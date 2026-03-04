@@ -5,7 +5,11 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\TaskWebController;
 
 // Routes для Фронт-энда
-Route::resource('tasks', TaskWebController::class);
+Route::post('tasks', [TaskWebController::class, 'store'])
+    ->middleware('task.limit')
+    ->name('tasks.store');
+Route::resource('tasks', TaskWebController::class)->except(['store']);
+
 
 // Переадресация домашней страницы
 Route::get('/', function () {

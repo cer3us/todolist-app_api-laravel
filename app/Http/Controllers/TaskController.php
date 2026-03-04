@@ -7,7 +7,7 @@ use Illuminate\Http\Response;
 use App\Http\Requests\Api\StoreTaskRequest;
 use App\Http\Requests\Api\UpdateTaskRequest;
 use App\Http\Resources\TaskResource;
-
+use Illuminate\Support\Facades\Session;
 
 class TaskController extends Controller
 {
@@ -22,7 +22,9 @@ class TaskController extends Controller
 
     public function store(StoreTaskRequest $request)
     {
-        $task = Task::create($request->validated());
+        $validated = $request->validated();
+        $validated['session_id'] = Session::getId();
+        $task = Task::create($validated);
 
 
         return (new TaskResource($task))->additional([

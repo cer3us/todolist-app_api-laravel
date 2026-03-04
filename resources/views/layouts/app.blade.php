@@ -42,7 +42,7 @@
     <!-- Навигация -->
     <div class="container">
         <nav class="navbar navbar-expand-lg navbar-light bg-white rounded mb-4">
-            <div class="container-fluid">
+            <div class="container-fluid mx-3">
                 <a class="navbar-brand text-primary fw-bold" href="/">
                     <i class="fas fa-tasks me-2"></i>To Do List (app+api)
                 </a>
@@ -72,35 +72,49 @@
 
     <!-- Основная часть -->
     <main>
+        @if(session('success'))
+        <div class="alert alert-success alert-dismissible fade show" role="alert">
+            {{ session('success') }}
+            <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+        </div>
+        @endif
+
+        @if(session('error'))
+        <div class="alert alert-danger alert-dismissible fade show" role="alert">
+            {{ session('error') }}
+            <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+        </div>
+        @endif
+
         <div class="container">
             @yield('content')
         </div>
     </main>
 
     <!-- Подвал -->
-    <footer class="mt-5 pt-4 border-top text-center text-muted small fixed-bottom bg-white">
+    < <footer class="mt-5 pt-4 border-top text-center text-muted small fixed-bottom bg-white">
         <div class="container">
             <p class="mb-2 text-muted small">
                 &copy; <span id="current-year"></span> {{ __('tasks.rightsReserved') }}.
             </p>
         </div>
-    </footer>
+        </footer>
 
-    <!-- Bootstrap JS -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+        <!-- Bootstrap JS -->
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 
-    <!-- Кастомный JavaScript -->
-    <script>
-        // Подтверждение перед удалением
-        function confirmDelete(taskId, taskTitle) {
-            if (confirm('{{ __("tasks.deleteTask") }}: "' + taskTitle + '"?')) {
-                // Отправляем форму с соответствующим ID
-                document.getElementById('delete-form-' + taskId).submit();
+        <!-- Кастомный JavaScript -->
+        <script>
+            // Подтверждение перед удалением
+            function confirmDelete(taskId, taskTitle) {
+                if (confirm('{{ __("tasks.deleteTask") }}: "' + taskTitle + '"?')) {
+                    // Отправляем форму с соответствующим ID
+                    document.getElementById('delete-form-' + taskId).submit();
+                }
             }
-        }
-        // Автоматическое обновление года в футере
-        document.getElementById('current-year').textContent = new Date().getFullYear();
-    </script>
+            // Автоматическое обновление года в футере
+            document.getElementById('current-year').textContent = new Date().getFullYear();
+        </script>
 </body>
 
 </html>

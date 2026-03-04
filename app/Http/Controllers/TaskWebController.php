@@ -8,7 +8,7 @@ use Illuminate\View\View;
 use App\Http\Requests\StoreTaskRequest;
 use App\Http\Requests\UpdateTaskRequest;
 use App\Http\Resources\TaskResource;
-
+use Illuminate\Support\Facades\Session;
 
 class TaskWebController extends Controller
 {
@@ -25,8 +25,10 @@ class TaskWebController extends Controller
 
     public function store(StoreTaskRequest $request)
     {
+        $validated = $request->validated();
+        $validated['session_id'] = Session::getId();
 
-        Task::create($request->validated());
+        Task::create($validated);
 
         return redirect()->route('tasks.index')
             ->with('success', __('tasks.successStore'));

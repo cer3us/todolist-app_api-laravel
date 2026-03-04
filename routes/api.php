@@ -7,7 +7,8 @@ use App\Http\Controllers\TaskController;
 // Все CRUD операции для задач 
 Route::prefix('tasks')->group(function () {
     Route::get('/', [TaskController::class, 'index']);          // GET api//tasks
-    Route::post('/', [TaskController::class, 'store']);         // POST api//tasks
+    Route::post('/', [TaskController::class, 'store'])
+        ->middleware('task.limit');                             // POST api//tasks
     Route::get('/{id}', [TaskController::class, 'show']);       // GET api//tasks/{id}
     Route::patch('/{id}', [TaskController::class, 'update']);   // PATCH api//tasks/{id}
     Route::delete('/{id}', [TaskController::class, 'destroy']); // DELETE api//tasks/{id}

@@ -19,6 +19,9 @@ return Application::configure(basePath: dirname(__DIR__))
         $middleware->api(append: [
             SetLocaleMiddleware::class,
         ]);
+        $middleware->alias([
+            'task.limit' => \App\Http\Middleware\TaskLimitMiddleware::class,
+        ]);
     })
     ->withExceptions(function (Exceptions $exceptions): void {
         //
